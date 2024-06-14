@@ -49,6 +49,7 @@ model Car {
   brandId     Int
   brand       Brand     @relation(fields: [brandId], references: [id])
   image       Images[]
+  imageurl    String
 }
 
 model Images {
