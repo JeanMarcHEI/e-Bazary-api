@@ -1,4 +1,4 @@
-import { Car } from "@prisma/client";
+import { Car, Images } from "@prisma/client";
 import { prismaClient } from "../config/prisma";
 
 export const carService = {
@@ -7,7 +7,12 @@ export const carService = {
       data: car,
     });
   },
-  getAll: (): Promise<Car[]> => prismaClient.car.findMany(),
+  getAll: (): Promise<Car[]> =>
+    prismaClient.car.findMany({
+      include: {
+        brand: true,
+      },
+    }),
   getById: (id: string): Promise<Car | null> =>
     prismaClient.car.findUnique({
       where: {
